@@ -56,12 +56,11 @@ function processImage(pictureUrl) {
     }).done(function(data) {
         console.log(JSON.stringify(data, null, 2));
         $.ajax({
-            type:"GET",
-            url: "http://127.0.0.1:5000/output",
-            support_credentials: true,
-            // contentType: "application/json; charset=utf-8",
-            // data: JSON.stringify(data, null, 2),
-            // dataType: 'json',
+            type:"POST",
+            url: "/compute",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            dataType: 'json',
             success: function(response) {
                 console.log("fuck lmfao");
                 console.log(JSON.stringify(response, null, 2));
