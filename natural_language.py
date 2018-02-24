@@ -9,7 +9,7 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
   version='2017-02-27')
 
 response = natural_language_understanding.analyze(
-  text='Why the fucking hell are you fucked!',
+  text='Why the fucking hell are you cannabis!',
   features=Features(
     entities=EntitiesOptions(
       emotion=True,
@@ -23,16 +23,20 @@ response = natural_language_understanding.analyze(
 print(json.dumps(response, indent=2))
 def profanityCheck():
     f = open('censorList.txt','r') 
-
-    censored = f.read()
-    vulgarity = 0
+    censored = f.read().splitlines()
+    f.close()
+    #print(censored)
+    vulgarity = 1
     n = len(response["keywords"])
     for i in range(n):
-        if response["keywords"][i]["sentiment"]["score"]:
-            if response["keywords"][i]["text"] in censored:
-                print(response["keywords"][i]["emotion"]["digust"])
-                vulgarity += (response["keywords"][i]["emotion"]["digust"]+ \
-                              response["keywords"][i]["emotion"]["anger"])
-    f.close()
+        if response["keywords"][i]["sentiment"]["score"]<0:
+            print('hhjnkhnjhjn')
+
+            for j in range(len(censored)):
+                #print(response["keywords"][i]["text"]+"|"+censored[j]+"|")
+                if censored[j] in response["keywords"][i]["text"].split(' '):
+                    #print('hhjnkhnjhjn')
+                    vulgarity += (response["keywords"][i]["emotion"]["disgust"]+ \
+                                  response["keywords"][i]["emotion"]["anger"])
     return vulgarity
 print(profanityCheck())
