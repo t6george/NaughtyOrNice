@@ -3,6 +3,7 @@
 $(document).ready(initialize());
 
 function startAnalysis() {
+    var facebookUsername = document.getElementById("facebookUsername").value;
     var instagramUsername = document.getElementById("instagramUsername").value;
     $.getJSON('https://www.instagram.com/' + instagramUsername + '/?__a=1', function(userIdFind) {
         var userId = userIdFind.user.id;
@@ -12,7 +13,9 @@ function startAnalysis() {
         readyInstagramUserId(userId);
     });
 
-    // facebookGetInfo();
+    if (facebookUsername === "eterwiel") {
+        facebookGetInfo();
+    }
     return false;
 }
 
@@ -85,11 +88,7 @@ function initialize() {
 }
 
 function facebookGetInfo() {
-    FB.api('/1452006591', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBAEcL9dPyfcgVtJhDPQFozu0GvDYhUFKYWUUMgBceqCEkEn9VeZA5ZBHuhbpZB6KjAX20UVrSiFJZAwDK0cdUDCFhZAaZC115UyIxZB7tqU5TjSRmEpWBXezNFtH7NIjKU0RPhvIS1qCgDlgwUMBaX8iE2HFbST2gRrACKx6yhuuuybhKshjNxdqaXDbSEA2LAZDZD'}, function(userIdFind) {
-        console.log(JSON.stringify(userIdFind, null, 2))
-    })
-
-    FB.api('/83711079303/feed', 'GET', {access_token: 'EAACEdEose0cBAEcL9dPyfcgVtJhDPQFozu0GvDYhUFKYWUUMgBceqCEkEn9VeZA5ZBHuhbpZB6KjAX20UVrSiFJZAwDK0cdUDCFhZAaZC115UyIxZB7tqU5TjSRmEpWBXezNFtH7NIjKU0RPhvIS1qCgDlgwUMBaX8iE2HFbST2gRrACKx6yhuuuybhKshjNxdqaXDbSEA2LAZDZD'}, function(userIdFind) {
+    FB.api('/me/posts', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBACruhtt0eFfa5p8JoL0KRTsmSi8JmwZBqbaN8axv9c5Q3MNhslbYL4OXFJJFByc12XZA4ITeZA1xCh3hcAwrcHQURWBan2uEybYBxtAh93VqNFGCID478S1ZAdDiVN8SvzJC50FstUzrZC4mQBhH58rVJfZC2N7lZC4brJXx2QItIquKacxX7ZCBnFSOYSvJ0gZDZD'}, function(userIdFind) {
         console.log(JSON.stringify(userIdFind, null, 2))
     })
 }
