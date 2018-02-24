@@ -54,14 +54,20 @@ function processImage(pictureUrl) {
         type: "POST",
         data: '{"url": ' + '"' + pictureUrl + '"}'
     }).done(function(data) {
-        console.log(JSON.stringify(data.tags, null, 2));
+        console.log(JSON.stringify(data, null, 2));
         $.ajax({
-            url: "../../test.py",
-            data: JSON.stringify(data.tags),
-            dataType: "json",
+            type:"GET",
+            url: "http://127.0.0.1:5000/output",
+            support_credentials: true,
+            // contentType: "application/json; charset=utf-8",
+            // data: JSON.stringify(data, null, 2),
+            // dataType: 'json',
             success: function(response) {
                 console.log("fuck lmfao");
                 console.log(JSON.stringify(response, null, 2));
+            },
+            error: function(request, status, error) {
+                console.log(request.responseText);
             }
         })
     }).fail(function(jqXHR, textStatus, errorThrown) {
