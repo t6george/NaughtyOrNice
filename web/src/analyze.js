@@ -36,18 +36,6 @@ function displayInstagramPictures(userId) {
     block.run();
 }
 
-function readyInstagramUserId(userId) {
-    var userUrl = 'https://api.instagram.com/v1/users/' + userId + '/media/recent/?access_token=265786819.d35b5f8.900bf4ccd93242d19036606f65670dd1';
-    console.log(userUrl);
-    $.getJSON(userUrl, function(userFind) {
-        for (var i = 0; i < Object.keys(userFind.data).length; i++) {
-            var pictureUrl = userFind.data[i].images.standard_resolution.url
-            console.log(pictureUrl);
-            processImage(pictureUrl)
-        }
-    });
-}
-
 function processImage(pictureUrl) {
     var key = "77606c7b568d4ad38cce114c66acd02c";
     var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
