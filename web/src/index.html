@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <title>Naughty Or Nice</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="instagrid.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="analyzeinstagram.js"></script>
+    <script src="display.js"></script>
+    <script src="analyze.js"></script>
 </head>
+
 <body>
+
 <div id="s-main">
     <form>
-        Facebook: <input type="text" name="facebook" id = "facebookUsername"><br>
-        Instagram: <input type="text" name="instagram" id = "instagramUsername"><br>
+        Facebook UserID: <input type="text" name="facebook" id = "facebookUsername"><br>
+        Instagram Username: <input type="text" name="instagram" id = "instagramUsername"><br>
         Spotify: <input type="text" name="spotify" id = "spotifyUsername"><br>
-        <input type="submit" value="Submit" onclick="return startInstagramAnalysis()">
+        <input type="submit" value="Submit" onclick="return startAnalysis()">
     </form>
+    <p id="userId"></p>
 </div>
+
+<div class='instagrid section' id='Instagram'>
+    <div class='instagrid.css' data-version='1' id='instagridz'>
+        <div class='instagrid.css'>
+            <div id='ody'></div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
