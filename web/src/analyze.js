@@ -33,7 +33,6 @@ function displayInstagramPictures(userId) {
         userId: intUserId,
         accessToken:"265786819.d35b5f8.900bf4ccd93242d19036606f65670dd1"
     });
-    console.log("Here " + userId);
     block.run();
 }
 
@@ -55,7 +54,16 @@ function processImage(pictureUrl) {
         type: "POST",
         data: '{"url": ' + '"' + pictureUrl + '"}'
     }).done(function(data) {
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify(data.tags, null, 2));
+        $.ajax({
+            url: "../../test.py",
+            data: JSON.stringify(data.tags),
+            dataType: "json",
+            success: function(response) {
+                console.log("fuck lmfao");
+                console.log(JSON.stringify(response, null, 2));
+            }
+        })
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Error: " + errorThrown);
     });
