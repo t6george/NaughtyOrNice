@@ -24,7 +24,7 @@ function processImage(pictureUrl) {
     var key = "77606c7b568d4ad38cce114c66acd02c";
     var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
     var params = {
-        "visualFeatures": "Categories,Description,Color",
+        "visualFeatures": "Categories,Tags,Faces,Description,Adult",
         "details": "",
         "language": "en"
     };
