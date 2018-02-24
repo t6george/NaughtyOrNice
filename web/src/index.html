@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Naughty Or Nice</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="instagrid.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="analyzeinstagram.js"></script>
+    <script src="display.js"></script>
+    <script src="analyze.js"></script>
 </head>
 
 <body>
+
 <div id="s-main">
     <form>
         Facebook UserID: <input type="text" name="facebook" id = "facebookUsername"><br>
@@ -16,12 +19,16 @@
         Spotify: <input type="text" name="spotify" id = "spotifyUsername"><br>
         <input type="submit" value="Submit" onclick="return startAnalysis()">
     </form>
-    <form>
-        <input type="submit" value="Login" onclick="return login()">
-    </form>
+    <p id="userId"></p>
 </div>
-<div id="s-status">
 
+<div class='instagrid section' id='Instagram'>
+    <div class='instagrid.css' data-version='1' id='instagridz'>
+        <div class='instagrid.css'>
+            <div id='ody'></div>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>

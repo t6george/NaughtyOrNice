@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b2af0ec-35de-47e2-823e-556c2d28df5a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/web/src/analyzeinstagram.js" afterPath="$PROJECT_DIR$/web/src/analyzeinstagram.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/web/src/display.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/web/src/instagrid.css" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/web/src/analyzeinstagram.js" afterPath="$PROJECT_DIR$/web/src/analyze.js" />
       <change beforePath="$PROJECT_DIR$/web/src/index.html" afterPath="$PROJECT_DIR$/web/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,21 +23,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="analyzeinstagram.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/src/analyzeinstagram.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1872">
-              <caret line="72" column="24" lean-forward="false" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
+            <state relative-caret-position="338">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/index.html">
+      <file leaf-file-name="analyze.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/src/analyze.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
+            <state relative-caret-position="-1118">
+              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <folding>
+                <marker date="1519488091028" expanded="true" signature="751:806" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="display.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/display.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2678">
+              <caret line="103" column="49" lean-forward="false" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="instagrid.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/instagrid.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1924">
+              <caret line="74" column="14" lean-forward="false" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -47,6 +72,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -54,6 +80,7 @@
     <findStrings>
       <find>document.write</find>
       <find>data</find>
+      <find>ody</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,8 +90,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/web/src/index.html" />
         <option value="$PROJECT_DIR$/web/src/analyzeinstagram.js" />
+        <option value="$PROJECT_DIR$/web/src/display.css" />
+        <option value="$PROJECT_DIR$/web/src/display.js" />
+        <option value="$PROJECT_DIR$/web/src/index.html" />
+        <option value="$PROJECT_DIR$/web/src/analyze.js" />
       </list>
     </option>
   </component>
@@ -127,6 +157,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -159,12 +190,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519467275586</updated>
-      <workItem from="1519467276794" duration="10801000" />
+      <workItem from="1519467276794" duration="17737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10801000" />
+    <option name="totallyTimeSpent" value="17737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1922" height="1085" extended-state="6" />
@@ -200,19 +231,37 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/src/index.html">
+    <entry file="file://$PROJECT_DIR$/web/src/instagrid.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
+        <state relative-caret-position="1924">
+          <caret line="74" column="14" lean-forward="false" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/analyzeinstagram.js">
+    <entry file="file://$PROJECT_DIR$/web/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="72" column="24" lean-forward="false" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
+        <state relative-caret-position="338">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/display.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2678">
+          <caret line="103" column="49" lean-forward="false" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/analyze.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1118">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding>
+            <marker date="1519488091028" expanded="true" signature="751:806" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
