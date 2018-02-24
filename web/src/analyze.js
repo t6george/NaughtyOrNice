@@ -9,8 +9,12 @@ function startAnalysis() {
         var userId = userIdFind.user.id;
         console.log(userId);
         document.getElementById("ody").innerHTML = "";
+        for (var i = 0; i < Object.keys(userIdFind.user.media.nodes).length; i++) {
+            var pictureUrl = userIdFind.user.media.nodes[i].display_src;
+            console.log(pictureUrl);
+            processImage(pictureUrl)
+        }
         displayInstagramPictures(userId);
-        readyInstagramUserId(userId);
     });
 
     if (facebookUsername === "eterwiel") {
