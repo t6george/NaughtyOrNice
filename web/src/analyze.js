@@ -5,16 +5,21 @@ $(document).ready(initialize());
 function startAnalysis() {
     var facebookUsername = document.getElementById("facebookUsername").value;
     var instagramUsername = document.getElementById("instagramUsername").value;
-    $.getJSON('https://www.instagram.com/' + instagramUsername + '/?__a=1', function(userIdFind) {
-        var userId = userIdFind.user.id;
-        console.log(userId);
-        document.getElementById("ody").innerHTML = "";
-        displayInstagramPictures(userId);
-        readyInstagramUserId(userId);
-    });
-
     if (facebookUsername === "eterwiel") {
         facebookGetInfo();
+    }
+    if (instagramUsername !== "") {
+        $.getJSON('https://www.instagram.com/' + instagramUsername + '/?__a=1', function(userIdFind) {
+            var userId = userIdFind.user.id;
+            console.log(userId);
+            document.getElementById("ody").innerHTML = "";
+            for (var i = 0; i < Object.keys(userIdFind.user.media.nodes).length; i++) {
+                var pictureUrl = userIdFind.user.media.nodes[i].display_src;
+                console.log(pictureUrl);
+                processImage(pictureUrl)
+            }
+            displayInstagramPictures(userId);
+        });
     }
     return false;
 }
@@ -28,20 +33,7 @@ function displayInstagramPictures(userId) {
         userId: intUserId,
         accessToken:"265786819.d35b5f8.900bf4ccd93242d19036606f65670dd1"
     });
-    console.log("Here " + userId);
     block.run();
-}
-
-function readyInstagramUserId(userId) {
-    var userUrl = 'https://api.instagram.com/v1/users/' + userId + '/media/recent/?access_token=265786819.d35b5f8.900bf4ccd93242d19036606f65670dd1';
-    console.log(userUrl);
-    $.getJSON(userUrl, function(userFind) {
-        for (var i = 0; i < Object.keys(userFind.data).length; i++) {
-            var pictureUrl = userFind.data[i].images.standard_resolution.url
-            console.log(pictureUrl);
-            processImage(pictureUrl)
-        }
-    });
 }
 
 function processImage(pictureUrl) {
@@ -62,7 +54,16 @@ function processImage(pictureUrl) {
         type: "POST",
         data: '{"url": ' + '"' + pictureUrl + '"}'
     }).done(function(data) {
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify(data.tags, null, 2));
+        $.ajax({
+            url: "../../test.py",
+            data: JSON.stringify(data.tags),
+            dataType: "json",
+            success: function(response) {
+                console.log("fuck lmfao");
+                console.log(JSON.stringify(response, null, 2));
+            }
+        })
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Error: " + errorThrown);
     });
@@ -88,7 +89,51 @@ function initialize() {
 }
 
 function facebookGetInfo() {
-    FB.api('/me/posts', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBACruhtt0eFfa5p8JoL0KRTsmSi8JmwZBqbaN8axv9c5Q3MNhslbYL4OXFJJFByc12XZA4ITeZA1xCh3hcAwrcHQURWBan2uEybYBxtAh93VqNFGCID478S1ZAdDiVN8SvzJC50FstUzrZC4mQBhH58rVJfZC2N7lZC4brJXx2QItIquKacxX7ZCBnFSOYSvJ0gZDZD'}, function(userIdFind) {
-        console.log(JSON.stringify(userIdFind, null, 2))
+    FB.api('/me/posts', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBAAFgrjWZCN5Igm5DJvm5CqIcuqc80EMih0X6NTg5JQdH7yS7yMk05axwtfVWoqZA0x4LLcdu1OZAowb2a51ZBcYNnJOt3QJKDJyaT7vLdZAAkPareT9tgfCuG5mem9TAj9rv19ZBjTimRbgZBgiTSoZBj7UtkXE15LAC0rod5vkZAkaZAeHFVP536pWAt3atndZBgZDZD'}, function(userIdFind) {
+        for (var i = 0; i < (userIdFind.data).length; i++) {
+            console.log(userIdFind.data[i].message);
+            // analyzeText({ 'documents': [{'id': '1', 'language': 'en', 'text': userIdFind.data[i].message}]});
+        }
     })
+}
+
+function analyzeText(post) {
+    // let https = require('https');
+    // let accessKey = 'ecb60692c9dd4e2f934784b785d4633c';
+    // let uri = 'westus.api.cognitive.microsoft.com';
+    // let path = '/text/analytics/v2.0/sentiment';
+    //
+    // let response_handler = function (response) {
+    //     let body = '';
+    //     response.on ('data', function (d) {
+    //         body += d;
+    //     });
+    //     response.on ('end', function () {
+    //         let body_ = JSON.parse (body);
+    //         let body__ = JSON.stringify (body_, null, '  ');
+    //         console.log (body__);
+    //     });
+    //     response.on ('error', function (e) {
+    //         console.log ('Error: ' + e.message);
+    //     });
+    // };
+    //
+    // let get_sentiments = function (documents) {
+    //     let body = JSON.stringify (documents);
+    //
+    //     let request_params = {
+    //         method : 'POST',
+    //         hostname : uri,
+    //         path : path,
+    //         headers : {
+    //             'Ocp-Apim-Subscription-Key' : accessKey,
+    //         }
+    //     };
+    //
+    //     let req = https.request (request_params, response_handler);
+    //     req.write (body);
+    //     req.end ();
+    // }
+    //
+    // get_sentiments(post);
 }
