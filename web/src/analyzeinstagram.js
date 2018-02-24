@@ -1,14 +1,47 @@
-function startInstagramAnalysis() {
-    var username = document.getElementById("instagramUsername").value;
-    $.getJSON('https://www.instagram.com/' + username + '/?__a=1', function(userIdFind) {
-        var userId = userIdFind.user.id;
-        console.log(userId);
-        readyUserId(userId);
-    });
+$(document).ready(initialize());
+
+function initialize() {
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '161278361342995',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.12'
+        });
+
+        FB.getLoginStatus(function(response) {
+            if (response.status === "connected") {
+                document.getElementById("s-status").innerHTML = "Connected";
+            } else if (response.status === "not_authorized") {
+                document.getElementById("s-status").innerHTML = "Not logged in";
+            } else {
+                document.getElementById("s-status").innerHTML = "Not logged in else";
+            }
+        })
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+}
+
+function startAnalysis() {
+    // var instagramUsername = document.getElementById("instagramUsername").value;
+    // $.getJSON('https://www.instagram.com/' + instagramUsername + '/?__a=1', function(userIdFind) {
+    //     var userId = userIdFind.user.id;
+    //     console.log(userId);
+    //     readyInstagramUserId(userId);
+    // });
+
+    facebookGetInfo();
     return false;
 }
 
-function readyUserId(userId) {
+function readyInstagramUserId(userId) {
     var userUrl = 'https://api.instagram.com/v1/users/' + userId + '/media/recent/?access_token=265786819.d35b5f8.900bf4ccd93242d19036606f65670dd1';
     console.log(userUrl);
     $.getJSON(userUrl, function(userFind) {
@@ -42,4 +75,23 @@ function processImage(pictureUrl) {
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log("Error: " + errorThrown);
     });
+}
+
+function login() {
+    FB.login(function(response) {
+        if (response.status === "connected") {
+            document.getElementById("s-status").innerHTML = "Connected";
+        } else if (response.status === "not_authorized") {
+            document.getElementById("s-status").innerHTML = "Not logged in";
+        } else {
+            document.getElementById("s-status").innerHTML = "Not logged in else";
+        }
+    })
+    return false;
+}
+
+function facebookGetInfo() {
+    FB.api('/1452006591', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBAEcL9dPyfcgVtJhDPQFozu0GvDYhUFKYWUUMgBceqCEkEn9VeZA5ZBHuhbpZB6KjAX20UVrSiFJZAwDK0cdUDCFhZAaZC115UyIxZB7tqU5TjSRmEpWBXezNFtH7NIjKU0RPhvIS1qCgDlgwUMBaX8iE2HFbST2gRrACKx6yhuuuybhKshjNxdqaXDbSEA2LAZDZD'}, function(userIdFind) {
+        console.log(JSON.stringify(userIdFind, null, 2))
+    })
 }

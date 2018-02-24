@@ -7,14 +7,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="analyzeinstagram.js"></script>
 </head>
+
 <body>
 <div id="s-main">
     <form>
-        Facebook: <input type="text" name="facebook" id = "facebookUsername"><br>
-        Instagram: <input type="text" name="instagram" id = "instagramUsername"><br>
+        Facebook UserID: <input type="text" name="facebook" id = "facebookUsername"><br>
+        Instagram Username: <input type="text" name="instagram" id = "instagramUsername"><br>
         Spotify: <input type="text" name="spotify" id = "spotifyUsername"><br>
-        <input type="submit" value="Submit" onclick="return startInstagramAnalysis()">
+        <input type="submit" value="Submit" onclick="return startAnalysis()">
     </form>
+    <form>
+        <input type="submit" value="Login" onclick="return login()">
+    </form>
+</div>
+<div id="s-status">
+
 </div>
 </body>
 </html>
