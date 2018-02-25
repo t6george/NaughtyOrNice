@@ -1,8 +1,7 @@
 import json, sys, pickle
 import numpy as np
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 from flask import make_response
-
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 \
   import Features, EntitiesOptions, KeywordsOptions, MetadataOptions
@@ -364,7 +363,7 @@ class TrainedNetwork(object):
         self.inputWeights = inputWeights
         self.hiddenBiases = hiddenBiases
         self.hiddenWeights = hiddenWeights
-        
+
     def feedforward(self,activation):
         activation = sigmoid(np.dot(activation,self.inputWeights)+self.inputBiases) #transition to hidden layer
         return sigmoid(np.dot(activation,self.hiddenWeights)+self.hiddenBiases) #transition to output layer
@@ -380,7 +379,7 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
   version='2017-02-27')
 
 def profanityCheck(nlp):
-    f = open('censorList.txt','r') 
+    f = open('censorList.txt','r')
     censored = f.read().splitlines()
     f.close()
 
@@ -401,7 +400,7 @@ def profanityCheck(nlp):
 
 @app.route("/start")
 def webprint():
-    return render_template('index.html')
+    return send_file('templates/index.html')
 
 ####################################Implementing Image Machine Learning##########
 @app.route("/computePicture", methods=['GET', 'POST'])
@@ -425,7 +424,9 @@ def computePicture():
             print('blockchain')
             result = str([0 for i in range(7)])
 
+
 #        print(result)
+
         resp = make_response('{"response": '+result+'}')
         return resp
 
@@ -447,16 +448,23 @@ def computePost():
                   emotion=True,
                   sentiment=True,
                   limit=2)))
+
             result = str(profanityCheck(response))
-            
+
         except:
             result = '0'
-            
+
         resp = make_response('{"response": '+result+'}')
-        
+
         return resp
 
+@app.route("/please", methods=['GET', 'POST'])
+def computePicture():
+    if request.method == 'POST':
+        print ("fucking please omfg")
+        result = "return this"
+        resp = make_response('{"response": '+result+'}')
+        return resp
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 3000)
-    
