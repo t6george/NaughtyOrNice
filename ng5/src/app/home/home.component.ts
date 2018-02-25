@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import {trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.bar = document.getElementById('progBar');
-    this.percent = 1;
+    this.percent = 0;
     this.increaseBar(this.percent);
   }
 
@@ -45,9 +46,12 @@ export class HomeComponent implements OnInit {
       console.log(percent);
       this.percent++;
       this.bar.style.width = this.percent +'%';
-      this.bar.innerHTML = this.bar.style.width;
+      // this.bar.innerHTML = this.bar.style.width;
     }
   }
+
+
+
 }
   // itemCount: number;
   // btnText = 'Add an item';
