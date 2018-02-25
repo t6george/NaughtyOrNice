@@ -17,6 +17,19 @@ function startAnalysis() {
                 var pictureUrl = userIdFind.user.media.nodes[i].display_src;
                 console.log(pictureUrl);
                 processImage(pictureUrl)
+                $.ajax({
+                    type:"POST",
+                    url: "/computePost",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(JSON.stringify(response, null, 2));
+                    },
+                    error: function(request, status, error) {
+                        console.log(request.responseText);
+                    }
+                })
             }
             displayInstagramPictures(userId);
         });
