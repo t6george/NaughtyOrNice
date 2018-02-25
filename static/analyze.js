@@ -62,7 +62,6 @@ function processImage(pictureUrl) {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function(response) {
-                console.log("fuck lmfao");
                 console.log(JSON.stringify(response, null, 2));
             },
             error: function(request, status, error) {
