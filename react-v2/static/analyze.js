@@ -31,7 +31,12 @@ function startAnalysis() {
                         console.log(JSON.stringify(response, null, 2));
                     },
                     error: function(request, status, error) {
-                        console.log(request.responseText);
+                        // var result = JSON.parse(request.responseJSON);
+                        // console.log(result);
+                        // console.log("fuck");
+                        // result = result.response;
+                        // console.log(result);
+                        // console.log("skinnybenis");
                     }
                 })
             }
@@ -87,7 +92,10 @@ function processImage(pictureUrl, isLast) {
                         type:"GET",
                         url: "/pullPictureData",
                         success: function(response) {
-                            
+                            var parsed = JSON.parse(response);
+                            var data = parsed.response;
+                            move(data[0], data[1], data[2], data[3], data[4], 0, data[5], data[6]);
+                            console.log(data);
                         },
                         error: function(request, status, error) {
                             console.log("b");

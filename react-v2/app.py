@@ -454,6 +454,8 @@ def pullPictureData():
     with open('scores.pickle', 'wb') as writer:
         pickle.dump([0 for i in range(7)], writer)
 
+    scores[4] = scores[4]/12
+
     low = min(scores)
     r = max(scores)-low+0.15
 
@@ -462,8 +464,6 @@ def pullPictureData():
     print(result)
 
     resp = make_response('{"response": '+result+'}')
-
-    scores = [0 for i in range(7)]
 
     return resp
 
