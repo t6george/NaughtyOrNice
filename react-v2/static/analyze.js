@@ -28,15 +28,15 @@ function startAnalysis() {
                     data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
                     dataType: 'json',
                     success: function(response) {
-                        console.log(JSON.stringify(response, null, 2));
+                        console.log(JSON.stringify(response));
+                        // var result = JSON.parse(response);
+                        var result = JSON.parse(response.responseJSON);
+                        console.log(result.response);
+                        console.log("hahahahah");
+                        move(-1, -1, -1, -1, -1, result, -1, -1)
                     },
                     error: function(request, status, error) {
-                        // var result = JSON.parse(request.responseJSON);
-                        // console.log(result);
-                        // console.log("fuck");
-                        // result = result.response;
-                        // console.log(result);
-                        // console.log("skinnybenis");
+                        console.log("fuck");
                     }
                 })
             }
@@ -94,7 +94,7 @@ function processImage(pictureUrl, isLast) {
                         success: function(response) {
                             var parsed = JSON.parse(response);
                             var data = parsed.response;
-                            move(data[0], data[1], data[2], data[3], data[4], 0, data[5], data[6]);
+                            move(data[0], data[1], data[2], data[3], data[4], -1, data[5], data[6]);
                             console.log(data);
                         },
                         error: function(request, status, error) {

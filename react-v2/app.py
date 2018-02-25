@@ -394,7 +394,9 @@ def profanityCheck(nlp):
                                   nlp["keywords"][i]["emotion"]["anger"]+ \
                                   nlp["keywords"][i]["sentiment"]["score"]*(-1))
 
-    return vulgarity
+    vulgarity = vulgarity + ""
+    resp = make_response('{"response": '+vulgarity+'}')
+    return resp
 
 ######################################Flask########################################
 
