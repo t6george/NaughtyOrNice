@@ -67,7 +67,7 @@ function processImage(pictureUrl) {
         type: "POST",
         data: '{"url": ' + '"' + pictureUrl + '"}'
     }).done(function(data) {
-        console.log(JSON.stringify(data, null, 2));
+        // console.log(JSON.stringify(data, null, 2));
         $.ajax({
             type:"POST",
             url: "/computePicture",

@@ -410,9 +410,9 @@ def computePicture():
         try:
             with open('dictionary.pickle', 'rb') as handle:
                 dictionary = pickle.load(handle)
-                
+
             inp = [[0 for i in range(291)]]
-            
+
             for tag in fromJs['description']['tags']:
                 try:
                     inp[0][int(dictionary[tag])]= 1
@@ -464,7 +464,7 @@ def computePost():
         return resp
 
 @app.route("/please", methods=['GET', 'POST'])
-def computePicture():
+def testFunction():
     if request.method == 'POST':
         print ("fucking please omfg")
         result = "return this"
