@@ -1,6 +1,7 @@
 function move() {
 
-    var scores = [20, 69, 49, 23, 23, 42, 88];
+    var scores = [];
+
     var i = 0;
     var x;
     var bar= ['progBar1', 'progBar2', 'progBar3', 'progBar4', 'progBar5', 'progBar6','progBar7' ,'progBar8'];
