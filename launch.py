@@ -3,7 +3,7 @@ import sys
 from flask import Flask, render_template, request, redirect, url_for
 from flask import make_response
 
-app = Flask('test')
+app = Flask('launch')
 
 @app.route("/start")
 def webprint():
