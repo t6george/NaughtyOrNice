@@ -3,6 +3,7 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <script src="./scrollreveal-master/dist/scrollreveal.js"></script>
 <script src="./scrollreveal-master/dist/scrollreveal.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   window.sr = ScrollReveal();
   if (sr.isSupported()) {
@@ -45,6 +46,20 @@
       </div>
     </form>
 
+    <script>
+      $('.btn').click(function () {
+        $.ajax({
+          type: "POST",
+          url: "../../app.py",
+          success: function (response) {
+            console.log("fuckpenis");
+          },
+          error: function(request,status, error) {
+            console.log("fuckme harder");
+          }
+        })
+      })
+    </script>
 
 
   </div>
