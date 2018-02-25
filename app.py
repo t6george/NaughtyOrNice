@@ -420,10 +420,10 @@ def computePicture():
                     pass
             temp = t_net.feedforward(inp)
 
-            low = min(temp)
-            span = max(temp)-low
+            low = temp.argmin
+            span = temp.argmax - low
 
-            result = str([round((x-low)/span, 4) for x in temp])
+            result = str([(x-low)/span for x in temp])
             
         except:
             print('blockchain')
