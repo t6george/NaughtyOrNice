@@ -96,9 +96,6 @@ out = [1,0,0,0,0,0,0]
 ##with open('dictionary.pickle', 'wb') as handle:
 ##    pickle.dump(dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-with open('dictionary.pickle', 'rb') as handle:
-    dictionary = pickle.load(handle)
 
-input_net = [[0 for i in range(291)]]
 
 
