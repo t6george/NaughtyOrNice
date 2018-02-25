@@ -403,6 +403,7 @@ def webprint():
     return send_file('templates/index.html')
 
 ####################################Implementing Image Machine Learning##########
+
 @app.route("/computePicture", methods=['GET', 'POST'])
 def computePicture():
     if request.method == 'POST':
@@ -418,17 +419,53 @@ def computePicture():
                     inp[0][int(dictionary[tag])]= 1
                 except:
                     pass
-            result = str(t_net.feedforward(inp)[0])
+
+            scores_lst = []
+            with open('scores.pickle', 'rb') as adder:
+                try:
+                    scores_lst = pickle.load(adder)
+                except EOFError:
+                    scores_lst = [0 for i in range(7)]
+                scores_lst = [i+j for i,j in zip(scores_lst,t_net.feedforward(inp)[0])]
+
+            with open('scores.pickle', 'wb') as writer:
+                pickle.dump(scores_lst, writer)
+
+
 
         except:
             print('blockchain')
-            result = str([0 for i in range(7)])
 
-
-#        print(result)
-
+        result = "haha"
         resp = make_response('{"response": '+result+'}')
         return resp
+
+@app.route("/pullPictureData", methods=['GET', 'POST'])
+def pullPictureData():
+
+    scores = []
+
+    with open('scores.pickle', 'rb') as adder:
+        try:
+            scores = pickle.load(adder)
+        except EOFError:
+            scores_lst = [0 for i in range(7)]
+
+    with open('scores.pickle', 'wb') as writer:
+        pickle.dump([0 for i in range(7)], writer)
+
+    scores[4] = scores[4]/12
+
+    low = min(scores)
+    r = max(scores)-low+0.15
+
+    result = str([round((x-low + 0.1)/r, 3) for x in scores])
+
+    print(result)
+
+    resp = make_response('{"response": '+result+'}')
+
+    return resp
 
 #######################################Implementing NLP###########################
 

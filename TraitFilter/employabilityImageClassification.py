@@ -51,7 +51,7 @@ class Network(object):
         activation = x
         activations = [x]
         raw_activs = []
-
+        
         for bias,weight in zip(self.biases,self.weights):
             raw_activ = tf.matmul(activation,weight)
             raw_activs.append(raw_activ)
@@ -64,7 +64,7 @@ class Network(object):
         
         for i in range(2,self.num_layers):
             raw_activ = raw_activs[-i]
-            delta = tf.matmul(tf.transpose(self.weights[1-i]),delta)*sigmoid_prime(raw_activ)
+            delta = tf.matmul(tf.transpose(delta,self.weights[1-i]))*sigmoid_prime(raw_activ)
             b_differential[-i] = delta
             w_differential[-i] = tf.matmul(delta,tf.transpose(activations[-1-i]))
             
@@ -81,20 +81,12 @@ class Network(object):
 
 out = [1,0,0,0,0,0,0]
 
-##with tf.Session() as sess:
-##    tf.global_variables_initializer().run()
-##    net = Network([2,4,4])
-##    print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
-##file = open('hash.txt','r')
-##lst = file.read().split('\n')
-##file.close()
-##
-##dictionary ={}
-##for element in lst[:-1]:
-##    temp = element.split(':')
-##    dictionary[temp[0]] = temp[1]
-##with open('dictionary.pickle', 'wb') as handle:
-##    pickle.dump(dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with tf.Session() as sess:
+    tf.global_variables_initializer().run()
+    net = Network([2,4,4])
+    print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
+
+
 
 
 
