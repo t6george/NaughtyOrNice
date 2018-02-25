@@ -1,7 +1,6 @@
 import tensorflow as tf
 import numpy as np
-import random
-
+import random,pickle
 
 def sigmoid(z):
     return 1.0/(1.0 + tf.exp(-z))
@@ -80,48 +79,26 @@ class Network(object):
         return output_activations-y
         
 
-##inputs=tf.placeholder('float',[None,2],name='Input')
-##targets=tf.placeholder('float',name='Target')
-##
-##weight1=tf.Variable(tf.random_normal(shape=[2,3],stddev=0.02),name="Weight1")
-##biases1=tf.Variable(tf.random_normal(shape=[3],stddev=0.02),name="Biases1")
-##
-##hLayer=tf.matmul(inputs,weight1)
-##hLayer=hLayer+biases1
-##
-##hLayer=tf.sigmoid(hLayer, name='hActivation')
-##
-##weight2=tf.Variable(tf.random_normal(shape=[3,1],stddev=0.02),name="Weight2")
-##biases2=tf.Variable(tf.random_normal(shape=[1],stddev=0.02),name="Biases2")
-##
-##weight2=tf.Variable(tf.random_normal(shape=[3,1],stddev=0.02),name="Weight2")
-##biases2=tf.Variable(tf.random_normal(shape=[1],stddev=0.02),name="Biases2")
-##
-##cost=tf.squared_difference(targets, output)
-##cost=tf.reduce_mean(cost)
-##optimizer=tf.train.AdamOptimizer().minimize(cost)
-##inp = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,
-##       0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1]
-#[3,4]
-#inp = list(map(lambda x : x * 1.0,inp))
 out = [1,0,0,0,0,0,0]
 
-with tf.Session() as sess:
-    tf.global_variables_initializer().run()
-    net = Network([2,4,4])
- #   inp = tf.placeholder('float',[2,None],name='Input')
+##with tf.Session() as sess:
+##    tf.global_variables_initializer().run()
+##    net = Network([2,4,4])
+##    print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
+##file = open('hash.txt','r')
+##lst = file.read().split('\n')
+##file.close()
+##
+##dictionary ={}
+##for element in lst[:-1]:
+##    temp = element.split(':')
+##    dictionary[temp[0]] = temp[1]
+##with open('dictionary.pickle', 'wb') as handle:
+##    pickle.dump(dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    
-   #inp=tf.placeholder('float32',[None,2],name='Input')
-    print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
-##    for i in range(epochs):
-##        error,_ =sess.run([cost,optimizer],feed_dict={inputs: inp,targets:out})
-##        print(i,error)
-        
-##     while True:
-##            a = input("type 1st input :")
-##            b = input("type 2nd input :")
-##            inp=[[a,b]]
-##            inp=np.array(inp)
-##            prediction=sess.run([output],feed_dict={inputs: inp
-##            print(prediction)
+with open('dictionary.pickle', 'rb') as handle:
+    dictionary = pickle.load(handle)
+
+input_net = [[0 for i in range(291)]]
+
+
