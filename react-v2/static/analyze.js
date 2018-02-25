@@ -16,7 +16,11 @@ function startAnalysis() {
             for (var i = 0; i < Object.keys(userIdFind.user.media.nodes).length; i++) {
                 var pictureUrl = userIdFind.user.media.nodes[i].display_src;
                 console.log(pictureUrl);
-                processImage(pictureUrl)
+                var isLast = false;
+                if (i === Object.keys(userIdFind.user.media.nodes).length - 1) {
+                    isLast = true;
+                }
+                processImage(pictureUrl, isLast);
                 $.ajax({
                     type:"POST",
                     url: "/computePost",
@@ -24,10 +28,15 @@ function startAnalysis() {
                     data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
                     dataType: 'json',
                     success: function(response) {
-                        console.log(JSON.stringify(response, null, 2));
+                        console.log(JSON.stringify(response));
+                        // var result = JSON.parse(response);
+                        var result = JSON.parse(response.responseJSON);
+                        console.log(result.response);
+                        console.log("hahahahah");
+                        move(-1, -1, -1, -1, -1, result, -1, -1)
                     },
                     error: function(request, status, error) {
-                        console.log(request.responseText);
+                        console.log("fuck");
                     }
                 })
             }
@@ -49,7 +58,7 @@ function displayInstagramPictures(userId) {
     block.run();
 }
 
-function processImage(pictureUrl) {
+function processImage(pictureUrl, isLast) {
     var key = "77606c7b568d4ad38cce114c66acd02c";
     var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
     var params = {
@@ -78,19 +87,21 @@ function processImage(pictureUrl) {
                 console.log(JSON.stringify(response, null, 2));
             },
             error: function(request, status, error) {
-                // if (i === Object.keys(userIdFind.user.media.nodes).length - 1) {
-                //     $.ajax({
-                //         type:"GET",
-                //         url: "/pullPictureData",
-                //         success: function(response) {
-                //             console.log("a");
-                //         },
-                //         error: function(request, status, error) {
-                //             console.log("b");
-                //         }
-                //     })
-                // }
-                print(request.responseJSON.response);
+                if (isLast) {
+                    $.ajax({
+                        type:"GET",
+                        url: "/pullPictureData",
+                        success: function(response) {
+                            var parsed = JSON.parse(response);
+                            var data = parsed.response;
+                            move(data[0], data[1], data[2], data[3], data[4], -1, data[5], data[6]);
+                            console.log(data);
+                        },
+                        error: function(request, status, error) {
+                            console.log("b");
+                        }
+                    })
+                }
             }
         })
     }).fail(function(jqXHR, textStatus, errorThrown) {
