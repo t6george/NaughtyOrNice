@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-import random,pickle
+import random
 
 def sigmoid(z):
     return 1.0/(1.0 + tf.exp(-z))
@@ -83,7 +83,7 @@ out = [1,0,0,0,0,0,0]
 
 with tf.Session() as sess:
     tf.global_variables_initializer().run()
-    net = Network([2,4,4])
+    net = Network([2,3,4])
     print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
 
 
