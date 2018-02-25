@@ -3,8 +3,8 @@
 $(document).ready(initialize());
 
 function startAnalysis() {
-    var facebookUsername = document.getElementById("facebookUsername").value;
-    var instagramUsername = document.getElementById("instagramUsername").value;
+    var facebookUsername = document.getElementById("fb-id").value;
+    var instagramUsername = document.getElementById("ig-id").value;
     if (facebookUsername === "eterwiel") {
         facebookGetInfo();
     }
