@@ -4,6 +4,7 @@
 
 body{
   font-family: 'Roboto', sans-serif;
+  color: white;
 }
 
 .line{
@@ -54,7 +55,7 @@ label{
 .submit-btn{
   margin-top: 3rem;
   width: 10rem;
-  margin-left: 1.80rem;
+  margin-left: 1.75rem;
   color: white;
   border: white solid 0.2rem;
 }
@@ -66,7 +67,27 @@ label{
 .progress-bar {
   float: right;
   z-index: 10;
-  height: 3rem;
+  height: 2rem;
+  background: linear-gradient(to left, #860000, #005200);
+  vertical-align: center;
+}
+
+#scrollbutton{
+  font-size: 4em;
+  top: 90%;
+}
+
+.blink{
+  text-decoration: blink;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:ease-in-out;
+  -webkit-animation-direction: alternate;
+}
+
+#scrollbutton:hover{
+  cursor: pointer;
 }
 
 #progBar{
@@ -74,15 +95,18 @@ label{
   font-size: 2em;
   padding-top: auto;
   padding-bottom: auto;
+  vertical-align: center;
 }
 
 .progress{
   border-radius: 2%;
+  vertical-align: center;
+  top: 2rem;
   border: 5px solid #292929;
 }
 
 .right-side{
-  margin-top: 20rem;
+  margin-top: 3rem;
 }
 
 
