@@ -418,12 +418,12 @@ def computePicture():
                     inp[0][int(dictionary[tag])]= 1
                 except:
                     pass
-            result = str(t_net.feedforward(inp))
+            temp = t_net.feedforward(inp)
 
-            low = min(result)
-            span = max(result)-low
+            low = min(temp)
+            span = max(temp)-low
 
-            result = [round((x-low)/span, 4) for x in result]
+            result = str([round((x-low)/span, 4) for x in temp])
             
         except:
             print('blockchain')
