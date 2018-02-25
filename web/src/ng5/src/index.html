@@ -2,13 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ng5</title>
+  <title>Naughty or Nice</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <body>
-  <app-root></app-root>
+<app-root>
+  <div id="loader-container">
+    <p id="loadingText">Loading</p>
+  </div>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway:400,800,200);
+    body {
+      background-color: #3498db;
+    }
+
+    #loader-container {
+      width: 200px;
+      height: 200px;
+      color: white;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border: 5px solid #3498db;
+      border-radius: 50%;
+      -webkit-animation: borderScale 2s infinite ease-in-out;
+      animation: borderScale 2s infinite ease-in-out;
+    }
+
+    #loadingText {
+      font-family: 'Raleway', sans-serif;
+      font-weight: bold;
+      font-size: 2em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @-webkit-keyframes borderScale {
+      0% {
+        border: 5px solid white;
+      }
+      50% {
+        border: 25px solid #3498db;
+      }
+      100% {
+        border: 5px solid white;
+      }
+    }
+
+    @keyframes borderScale {
+      0% {
+        border: 5px solid white;
+      }
+      50% {
+        border: 25px solid #3498db;
+      }
+      100% {
+        border: 5px solid white;
+      }
+    }
+  </style>
+</app-root>
 </body>
 </html>
