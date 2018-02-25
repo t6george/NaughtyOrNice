@@ -20,7 +20,7 @@ import org.apache.http.util.EntityUtils;
 
 public class Main {
 	
-	//318 inputs
+	//317 inputs
 	
 	String[] names = new String[] {
 			
@@ -46,17 +46,23 @@ public class Main {
 				
 				String s = Data.data[i][k];
 				
-				if(s.isEmpty())continue;
+				if(s.isEmpty()) {
+					tagData[i][k] = new String[]{};
+					continue;
+				}
 				
 				String get = pull(s);
 				
-				if(get.equals("..."))continue;
-				
+				if(get.equals("...") || !get.startsWith("{\"description\":{\"tags\":[")) {
+					tagData[i][k] = new String[]{};
+					continue;
+				}
+				//System.out.println(get);
 				String[] tags = get.substring(24).split("]")[0].split(",");
 				
 				for(int n = 0; n < tags.length; n++) {
 					tags[n] = tags[n].replaceAll("\"", "");
-					if(!keys.contains(tags[n]))keys.add(tags[n]);
+					if(!tags[n].isEmpty() && !keys.contains(tags[n]))keys.add(tags[n]);
 				}
 				
 				Arrays.sort(tags);
@@ -91,6 +97,7 @@ public class Main {
 				fin[i][k] = new int[keys.size()];
 				
 				for(String s:tagData[i][k]) {
+					if(s.isEmpty())continue;
 					fin[i][k][map.get(s)] = 1;
 				}
 				
@@ -158,7 +165,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		System.out.println((keys.size() + 1));
+		System.out.println((keys.size()));
 		
 	}
 	
