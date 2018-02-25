@@ -54,7 +54,7 @@ label{
 .submit-btn{
   margin-top: 3rem;
   width: 10rem;
-  margin-left: 1.95rem;
+  margin-left: 1.80rem;
   color: white;
   border: white solid 0.2rem;
 }
@@ -66,11 +66,23 @@ label{
 .progress-bar {
   float: right;
   z-index: 10;
+  height: 3rem;
+}
+
+#progBar{
+  color: white;
+  font-size: 2em;
+  padding-top: auto;
+  padding-bottom: auto;
+}
+
+.progress{
+  border-radius: 2%;
+  border: 5px solid #292929;
 }
 
 .right-side{
-  margin-top: 5rem;
-
+  margin-top: 20rem;
 }
 
 
