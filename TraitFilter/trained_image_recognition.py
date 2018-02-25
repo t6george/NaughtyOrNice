@@ -353,10 +353,18 @@ class TrainedNetwork(object):
         self.inputWeights = inputWeights
         self.hiddenBiases = hiddenBiases
         self.hiddenWeights = hiddenWeights
+        
     def feedforward(self,activation):
         pass
+
+for i in range(4):
+    for j in range(len(trained_net[i])):
+        print(trained_net[i][j])
         
 with open('dictionary.pickle', 'rb') as handle:
     dictionary = pickle.load(handle)
 
 input_net = [[0 for i in range(291)]]
+
+
+t_net = TrainedNetwork([291,50,7])

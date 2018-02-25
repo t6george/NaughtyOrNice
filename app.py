@@ -7,6 +7,30 @@ from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 \
   import Features, EntitiesOptions, KeywordsOptions, MetadataOptions
 
+################################Initialize Image Analysis###########################
+class TrainedNetwork(object):
+    def __init__(self,layers,inputBiases=trained_net[0],inputWeights=trained_net[1],hiddenBiases=trained_net[2],hiddenWeights=trained_net[3]):
+        self.layers = layers
+        self.inputBiases = inputBiases
+        self.inputWeights = inputWeights
+        self.hiddenBiases = hiddenBiases
+        self.hiddenWeights = hiddenWeights
+
+    def feedforward(self,activation):
+        pass
+
+##for i in range(4):
+##    for j in range(len(trained_net[i])):
+##        print(trained_net[i][j])
+
+with open('dictionary.pickle', 'rb') as handle:
+    dictionary = pickle.load(handle)
+
+input_net = [[0 for i in range(291)]]
+t_net = TrainedNetwork([291,50,7])
+
+##################################Initialize NLP###################################
+
 natural_language_understanding = NaturalLanguageUnderstandingV1(
   username='5ffbcf2d-bd95-4a08-9d83-b5e6ab1c1069',
   password='VNesmZYBhCuD',
@@ -30,6 +54,7 @@ def profanityCheck(nlp):
 
     return vulgarity
 
+######################################Flask########################################
 
 app = Flask('launch')
 
@@ -41,8 +66,12 @@ def webprint():
 def computePicture():
     if request.method == 'POST':
         fromJs = request.json
+        try:
+            result = str(t_net.feedforward())
+        except:
+            result = str([0 for i in range(7)])
+
         print (fromJs["tags"][0]["name"])
-        result = "return this"
         resp = make_response('{"response": '+result+'}')
         return resp
 
@@ -64,9 +93,12 @@ def computePost():
                   limit=2)))
 
             result = str(profanityCheck(response))
+
         except:
             result = '0'
+
         resp = make_response('{"response": '+result+'}')
+
         return resp
 
 @app.route("/please", methods=['GET', 'POST'])
