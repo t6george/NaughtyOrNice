@@ -1,21 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
 public class Main {
 	
@@ -82,79 +72,24 @@ public class Main {
 		mat = (Matrix[][])temp.toArray();
 		
 		
-//		double t = 0;
-//		
-//		for(int i = 0; i < 100; i++) {
-//			if(top(net.simpleTest(mat[i][0]),getMax(mat[i][1])))t++;
-//			//printMax(net.simpleTest(mat[i][0]));
-//			//printMax(mat[i][1]);
-//		}
-//		
-//		System.out.println(t/100);
-//		
-//		net.inputBiases.printMatrix();
-//		System.out.println();
-//		net.inputWeights.printMatrix();
-//		System.out.println();
-//		net.hiddenBiases.printMatrix();
-//		System.out.println();
-//		net.hiddenWeights.printMatrix();
+		double t = 0;
 		
-		Scanner reader = new Scanner(System.in);
-		
-		while(true) {
-			
-			String s = reader.nextLine();
-			
-			String get = pull(s);
-			
-			if(get.equals("...") || !get.startsWith("{\"description\":{\"tags\":[")) {
-				System.out.println("no");
-				continue;
-			}
-			//System.out.println(get);
-			String[] tags = get.substring(24).split("]")[0].split(",");
-			
-			for(int n = 0; n < tags.length; n++) {
-				tags[n] = tags[n].replaceAll("\"", "");
-				if(!tags[n].isEmpty() && !keys.contains(tags[n]))keys.add(tags[n]);
-			}
-			
-			Arrays.sort(tags);
-			
+		for(int i = 0; i < 100; i++) {
+			if(top(net.simpleTest(mat[i][0]),getMax(mat[i][1])))t++;
+			//printMax(net.simpleTest(mat[i][0]));
+			//printMax(mat[i][1]);
 		}
 		
-	}
-	
-	public String pull(String name) {
-		HttpClient httpclient = HttpClients.createDefault();
-
-		try {
-			URIBuilder builder = new URIBuilder("https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze");
-
-			builder.setParameter("visualFeatures", "Description");
-			//builder.setParameter("details", "{string}");
-			builder.setParameter("language", "en");
-
-			URI uri = builder.build();
-			HttpPost request = new HttpPost(uri);
-			request.setHeader("Content-Type", "application/json");
-			request.setHeader("Ocp-Apim-Subscription-Key", "38c5c60008b945778b4a2639e87f78d2");
-
-			// Request body
-			StringEntity reqEntity = new StringEntity("{\"url\":\"" + name + "\"}");
-			request.setEntity(reqEntity);
-
-			HttpResponse response = httpclient.execute(request);
-			HttpEntity entity = response.getEntity();
-
-			if (entity != null) {
-				return EntityUtils.toString(entity);
-			}
-		} catch (Exception e) {
-			return "...";
-		}
-		return "...";
+		System.out.println(t/100);
+		
+		net.inputBiases.printMatrix();
+		System.out.println();
+		net.inputWeights.printMatrix();
+		System.out.println();
+		net.hiddenBiases.printMatrix();
+		
+		net.hiddenWeights.printMatrix();
+		
 	}
 	
 	public double[] STD(String[] in) {

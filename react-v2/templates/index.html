@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/gif" href="../static/Naughty%20or%20Nice%20Logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700" rel="stylesheet">
@@ -26,6 +26,9 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../static/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/instagrid.css">
+    <script src="../static/display.js"></script>
+    <script src="../static/analyze.js"></script>
 </head>
 <body>
 
@@ -55,7 +58,7 @@
                     <div class="col-xl">
                         <input type="spotify" class="form-control" id="spot-id" placeholder="Username">
                     </div>
-                    <button type="submit" onclick="return move()" class="btn btn-outline-primary submit-btn">Submit</button>
+                    <button type="submit" onclick="return startAnalysis()" class="btn btn-outline-primary submit-btn">Submit</button>
                 </div>
             </form>
         </div>
@@ -104,6 +107,13 @@
     </div>
 </div>
 
+<div class='instagrid section' id='Instagram'>
+    <div class='instagrid.css' data-version='1' id='instagridz'>
+        <div class='instagrid.css'>
+            <div id='ody'></div>
+        </div>
+    </div>
+</div>
 
 <script>
     function specScroll() {
