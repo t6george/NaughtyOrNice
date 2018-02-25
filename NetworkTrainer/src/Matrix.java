@@ -66,11 +66,13 @@ public class Matrix {
 	
 	public void printRow(int row){
 		
+		System.out.print("[");
+		
 		for(int i = 0; i < width-1; i++){
 			System.out.print(matrix[row][i] + ", ");
 		}
 		
-		System.out.println(matrix[row][width-1]);
+		System.out.print(matrix[row][width-1] + "]");
 		
 	}
 	
@@ -103,10 +105,13 @@ public class Matrix {
 	}
 	
 	public void printMatrix(){
-		
-		for(int i = 0; i < height; i++){
+		System.out.print("[");
+		for(int i = 0; i < height-1; i++){
 			printRow(i);
+			System.out.println(",");
 		}
+		printRow(height-1);
+		System.out.println("]");
 		
 	}
 

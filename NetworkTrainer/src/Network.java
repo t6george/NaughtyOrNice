@@ -7,7 +7,7 @@ public class Network {
 	
 	private int inputSize, hiddenSize, outputSize;
 	
-	private Matrix inputWeights, inputBiases, hiddenWeights, hiddenBiases;
+	public Matrix inputWeights, inputBiases, hiddenWeights, hiddenBiases;
 	
 	public Network(int inputNeurons, int hiddenNeurons, int outputNeurons){
 		

@@ -63,7 +63,7 @@ public class Main {
 		
 		Network net = new Network(291, 50, 7);
 		
-		net.trainBatch(mat, 10, 30, 3);
+		net.trainBatch(mat, 8, 30, 3);
 		
 		List<Matrix[]> temp = Arrays.asList(mat);
 		
@@ -76,13 +76,19 @@ public class Main {
 		
 		for(int i = 0; i < 100; i++) {
 			if(top(net.simpleTest(mat[i][0]),getMax(mat[i][1])))t++;
-			printMax(net.simpleTest(mat[i][0]));
-			printMax(mat[i][1]);
+			//printMax(net.simpleTest(mat[i][0]));
+			//printMax(mat[i][1]);
 		}
 		
-		
-		
 		System.out.println(t/100);
+		
+		net.inputBiases.printMatrix();
+		System.out.println();
+		net.inputWeights.printMatrix();
+		System.out.println();
+		net.hiddenBiases.printMatrix();
+		System.out.println();
+		net.hiddenWeights.printMatrix();
 		
 	}
 	
