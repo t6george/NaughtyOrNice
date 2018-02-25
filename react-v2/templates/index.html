@@ -63,7 +63,7 @@
             </form>
         </div>
         <div class="text-center col-sm-4">
-            <h3 id="headline">A Machine-Learning Powered Tool</h3>
+            <h3 id="headline">A Machine-Learning Tool</h3>
             <img src="../static/Naughty%20or%20Nice%20Logo.png" alt="logo" id="logoPhoto"><br><br>
             <a id="scrollbutton" onclick="specScroll()"><i class="fas fa-angle-double-down blink"></i></a>
         </div>
@@ -118,7 +118,7 @@
 <script>
     function specScroll() {
         // var Instagram = document.getElementById("Instagram");
-        window.scrollTo(0,document.body.scrollHeight);
+        zenscroll.toY(document.body.scrollHeight);
     }
 </script>
 <script>

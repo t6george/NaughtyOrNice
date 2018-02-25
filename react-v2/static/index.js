@@ -1,28 +1,24 @@
 function move() {
 
+    var scores = [20, 69, 49, 23, 23, 42, 88];
     var i = 0;
-    var bar = [];
-    while(i < 9) {
-        i++;
-        console.log(i);
-        bar[i] = document.getElementById('progBar'+ i);
+    var x;
+    var bar= ['progBar1', 'progBar2', 'progBar3', 'progBar4', 'progBar5', 'progBar6','progBar7' ,'progBar8'];
 
-    }
     var width = 10;
-    var id = setInterval(frame, 80);
-    var j = 0;
-    function frame() {
 
-        if (width >= 100) {
-            clearInterval(id);
-            j++;
-        } else {
-            width++;
-            bar[j].style.width = width + '%';
-            bar[j].innerHTML = width + '%';
-            console.log(j);
+    for (var i = 0; i < 8; i++) {
+        x = document.getElementById(bar[i]);
+        x.style.width = 0 + '%';
+        x.innerHTML = 0 + '%';
+    }
+
+    for (var i = 0; i < 8; i++) {
+        x = document.getElementById(bar[i]);
+        for (var j = 0; j < scores[i]; j++) {
+            x.style.width = j + '%';
+            x.innerHTML = j + '%';
         }
-
     }
     return false;
 }
