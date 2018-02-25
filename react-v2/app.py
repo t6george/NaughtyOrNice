@@ -403,6 +403,10 @@ def webprint():
     return send_file('templates/index.html')
 
 ####################################Implementing Image Machine Learning##########
+
+global scores
+scores = [0 for i in range(7)]
+
 @app.route("/computePicture", methods=['GET', 'POST'])
 def computePicture():
     if request.method == 'POST':
@@ -418,17 +422,28 @@ def computePicture():
                     inp[0][int(dictionary[tag])]= 1
                 except:
                     pass
-            result = str(t_net.feedforward(inp)[0])
+            scores = [x+y for x,y in zip(t_net.feedforward(inp)[0], scores)]
 
         except:
             print('blockchain')
-            result = str([0 for i in range(7)])
 
 
 #        print(result)
 
-        resp = make_response('{"response": '+result+'}')
-        return resp
+
+@app.route("/pullPictureData", methods=['GET', 'POST'])
+def pullPictureData():
+
+    low = min(scores)
+    r = max(scores)-low+0.08
+
+    result = str([round((x-low + 0.05)/r, 3) for x in scores])
+
+    resp = make_response('{"response": '+result+'}')
+
+    scores = [0 for i in range(7)]
+
+    return resp
 
 #######################################Implementing NLP###########################
 
