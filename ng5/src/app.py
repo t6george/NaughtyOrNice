@@ -1,7 +1,9 @@
 import json
 import sys
+import os
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from flask import make_response
+from angular_flask import app
 
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 \
@@ -31,11 +33,11 @@ def profanityCheck(nlp):
     return vulgarity
 
 
-app = Flask('launch')
+app = Flask('app')
 
 @app.route("/start")
-def webprint():
-    return send_file('templates/index.html')
+def runserver():
+    app.run(host='0.0.0.0', port = 3000)
 
 @app.route("/computePicture", methods=['GET', 'POST'])
 def computePicture():
@@ -71,4 +73,6 @@ def computePost():
 
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 3000)
+    runserver()
+
+print ("fuck")
