@@ -22,7 +22,7 @@ class Network(object):
        return inp
 
     def stochastic_gradient_descent(self,training_data,batch_size,epochs,rate,test_data = None):
-        n = tf.size(training_data)
+        n = len(training_data)
         for epoch in range(epochs):
             random.shuffle(training_data)
             batches = [training_data[i:i+batch_size] for i in range(0,n,batch_size)]
@@ -46,7 +46,7 @@ class Network(object):
             else:
                 print('Epoch #:',epoch,'done')
 
-    def backpropagation(self,inp,out):
+    def backpropagation(self,x,y):
         b_differential = [tf.zeros(shape=bias.get_shape(),dtype='float32',name='nabla_b') for bias in self.biases]
         w_differential = [tf.zeros(shape=weight.get_shape(),dtype='float32',name='nabla_w') for weight in self.weights]
         activation = x
@@ -54,12 +54,16 @@ class Network(object):
         raw_activs = []
 
         for bias,weight in zip(self.biases,self.weights):
-            raw_activ = tf.matmul(weight,activation)
+            raw_activ = tf.matmul(activation,weight)
             raw_activs.append(raw_activ)
             activation = sigmoid(raw_activ)
             activations.append(activation)
-            
-        for i in range(1,self.num_layers):
+
+        delta = self.cost_derivative(activations[-1], y) * sigmoid_prime(raw_activs[-1])
+        b_differential[-1] = delta
+        w_differential[-1] = tf.matmul(delta, tf.transpose(activations[-2]))
+        
+        for i in range(2,self.num_layers):
             raw_activ = raw_activs[-i]
             delta = tf.matmul(tf.transpose(self.weights[1-i]),delta)*sigmoid_prime(raw_activ)
             b_differential[-i] = delta
@@ -104,12 +108,12 @@ out = [1,0,0,0,0,0,0]
 
 with tf.Session() as sess:
     tf.global_variables_initializer().run()
-    net = Network([2,3,4])
+    net = Network([2,4,4])
  #   inp = tf.placeholder('float',[2,None],name='Input')
 
     
    #inp=tf.placeholder('float32',[None,2],name='Input')
-    print(sess.run([net.stochastic_gradient_descent([([0,1],[1,2,3,4])],1,1,0.001)],feed_dict = {}))
+    print(sess.run([net.stochastic_gradient_descent([([[0.0,1.0]],[[1.0,2.0,3.0,4.0]])],1,1,0.001)],feed_dict = {}))
 ##    for i in range(epochs):
 ##        error,_ =sess.run([cost,optimizer],feed_dict={inputs: inp,targets:out})
 ##        print(i,error)

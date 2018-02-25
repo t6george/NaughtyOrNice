@@ -33,7 +33,6 @@ def profanityCheck():
         if response["keywords"][i]["sentiment"]["score"]<0:
             for j in range(len(censored)):
                 if censored[j] in response["keywords"][i]["text"].split(' '):
-
                     vulgarity += (response["keywords"][i]["emotion"]["disgust"]+ \
                                   response["keywords"][i]["emotion"]["anger"]+ \
                                   response["keywords"][i]["sentiment"]["score"]*(-1))
