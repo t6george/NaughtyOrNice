@@ -70,7 +70,7 @@ def computePost():
         return resp
 
 @app.route("/please", methods=['GET', 'POST'])
-def computePicture():
+def pleaseWork():
     if request.method == 'POST':
         print ("fucking please omfg")
         result = "return this"
