@@ -1,8 +1,17 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500" rel="stylesheet" xmlns="">
 <!--<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>-->
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
-
+<script src="./scrollreveal-master/dist/scrollreveal.js"></script>
+<script src="./scrollreveal-master/dist/scrollreveal.min.js"></script>
+<script>
+  window.sr = ScrollReveal();
+  if (sr.isSupported()) {
+    document.documentElement.classList.add('sr');
+  }
+</script>
+<style>
+  .sr .foo { visibility: hidden; }
+</style>
 
 
 <h1 class="mat-display-1">Naughty or Nice?</h1>
@@ -42,15 +51,32 @@
   <br>
   <div class="col-sm-6">
       <div class="right-side">
-      <span class="progress">
-        <span id="progBar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" (load)="increaseBar(percent)" style="width: 1%;"></span>
-      </span>
+        <h2>Naughtiness Rating</h2>
+      <div class="progress">
+        <div id="progBar" class="progress-bar bg-danger progress-bar-striped" (load)="increaseBar(percent)" style="width: 1%;"></div>
+      </div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="text-center">
+  <a id="scrollbutton" onclick="specScroll()"><i class="fas blink fa-angle-down"></i></a>
+</div>
 
+
+<script>
+  function specScroll() {
+    // var Instagram = document.getElementById("Instagram");
+    zenscroll.toY(0);
+  }
+</script>
+<script>
+  sr.reveal('.foo-1');
+</script>
+
+
+<script src="zenscroll-min.js"></script>
 
 
 
