@@ -43,7 +43,7 @@
   <div class="col-sm-6">
       <div class="right-side">
       <span class="progress">
-        <span class="progress-bar bg-danger progress-bar-striped" style="width: 40%;"></span>
+        <span id="progBar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" (load)="increaseBar(percent)" style="width: 1%;"></span>
       </span>
       </div>
     </div>

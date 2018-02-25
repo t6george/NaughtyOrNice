@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForOf } from '@angular/common';
 import {trigger, style, transition, animate, keyframes, query, stagger} from '@angular/animations';
-import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -29,29 +29,48 @@ import {DataService} from '../data.service';
   ]
 })
 export class HomeComponent implements OnInit {
-
-  itemCount: number;
-  btnText = 'Add an item';
-  goalText = 'My first life goal';
-  goals = [];
-  constructor(private _data: DataService) { }
+  percent: number;
+  private bar;
+  constructor() {
+  }
 
   ngOnInit() {
-    this._data.goal.subscribe(res => this.goals = res);
-    this.itemCount = this.goals.length;
-    this._data.changeGoal(this.goals);
+    this.bar = document.getElementById('progBar');
+    this.percent = 1;
+    this.increaseBar(this.percent);
   }
 
-  addItem() {
-    this.goals.push(this.goalText);
-    this.goalText = '';
-    this.itemCount = this.goals.length;
-    this._data.changeGoal(this.goals);
+  increaseBar(percent) {
+    while (this.percent < 70) {
+      console.log(percent);
+      this.percent++;
+      this.bar.style.width = this.percent +'%';
+      this.bar.innerHTML = this.bar.style.width;
+    }
   }
-
-  removeItem(i) {
-    this.goals.splice(i,1);
-    this._data.changeGoal(this.goals);
-  }
-
 }
+  // itemCount: number;
+  // btnText = 'Add an item';
+  // goalText = 'My first life goal';
+  // goals = [];
+  //
+  //
+
+
+
+  //
+  // addItem() {
+  //   this.goals.push(this.goalText);
+  //   this.goalText = '';
+  //   this.itemCount = this.goals.length;
+  //   this._data.changeGoal(this.goals);
+  // }
+  //
+  // removeItem(i) {
+  //   this.goals.splice(i,1);
+  //   this._data.changeGoal(this.goals);
+  // }
+
+
+//
+// }
