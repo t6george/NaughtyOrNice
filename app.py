@@ -419,6 +419,11 @@ def computePicture():
                 except:
                     pass
             result = str(t_net.feedforward(inp))
+
+            low = min(result)
+            span = max(result)-low
+
+            result = [round((x-low)/span, 4) for x in result]
             
         except:
             print('blockchain')
