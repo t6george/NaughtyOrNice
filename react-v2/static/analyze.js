@@ -3,8 +3,8 @@
 $(document).ready(initialize());
 
 function startAnalysis() {
-    var facebookUsername = document.getElementById("facebookUsername").value;
-    var instagramUsername = document.getElementById("instagramUsername").value;
+    var facebookUsername = document.getElementById("fb-id").value;
+    var instagramUsername = document.getElementById("ig-id").value;
     if (facebookUsername === "eterwiel") {
         facebookGetInfo();
     }
@@ -78,7 +78,19 @@ function processImage(pictureUrl) {
                 console.log(JSON.stringify(response, null, 2));
             },
             error: function(request, status, error) {
-                console.log(request.responseText);
+                // if (i === Object.keys(userIdFind.user.media.nodes).length - 1) {
+                //     $.ajax({
+                //         type:"GET",
+                //         url: "/pullPictureData",
+                //         success: function(response) {
+                //             console.log("a");
+                //         },
+                //         error: function(request, status, error) {
+                //             console.log("b");
+                //         }
+                //     })
+                // }
+                print(request.responseJSON.response);
             }
         })
     }).fail(function(jqXHR, textStatus, errorThrown) {
