@@ -17,6 +17,19 @@ function startAnalysis() {
                 var pictureUrl = userIdFind.user.media.nodes[i].display_src;
                 console.log(pictureUrl);
                 processImage(pictureUrl)
+                $.ajax({
+                    type:"POST",
+                    url: "/computePost",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(JSON.stringify(response, null, 2));
+                    },
+                    error: function(request, status, error) {
+                        console.log(request.responseText);
+                    }
+                })
             }
             displayInstagramPictures(userId);
         });
@@ -57,7 +70,7 @@ function processImage(pictureUrl) {
         console.log(JSON.stringify(data, null, 2));
         $.ajax({
             type:"POST",
-            url: "/compute",
+            url: "/computePicture",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
             dataType: 'json',
@@ -93,9 +106,22 @@ function initialize() {
 }
 
 function facebookGetInfo() {
-    FB.api('/me/posts', 'GET', {fields: 'first_name,last_name,id,picture'}, {access_token: 'EAACEdEose0cBAAFgrjWZCN5Igm5DJvm5CqIcuqc80EMih0X6NTg5JQdH7yS7yMk05axwtfVWoqZA0x4LLcdu1OZAowb2a51ZBcYNnJOt3QJKDJyaT7vLdZAAkPareT9tgfCuG5mem9TAj9rv19ZBjTimRbgZBgiTSoZBj7UtkXE15LAC0rod5vkZAkaZAeHFVP536pWAt3atndZBgZDZD'}, function(userIdFind) {
+    FB.api('/me/posts', 'GET', {access_token: 'EAACEdEose0cBAH9GC0rZARqRoyKpOrRKkJAKbGGZClADZAJI8efngYadIvZC6a630kg0dnzQ3OwJfmL0K9zizmMZC1UCAXhzemtZAQV6oeetpmY8LLA8oycIoFSOZBO7ZAAQiP2pSwPNOtHJfRZA8lmwDEDyklj8rJhNL3fQq7mUK2cklNTEEnfZAoVVQrDxWpZAc3HpbaGo6YdIAZDZD'}, function(userIdFind) {
         for (var i = 0; i < (userIdFind.data).length; i++) {
             console.log(userIdFind.data[i].message);
+            $.ajax({
+                type:"POST",
+                url: "/computePost",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(userIdFind.data[i].message),
+                dataType: 'json',
+                success: function(response) {
+                    console.log(JSON.stringify(response, null, 2));
+                },
+                error: function(request, status, error) {
+                    console.log(request.responseText);
+                }
+            })
             // analyzeText({ 'documents': [{'id': '1', 'language': 'en', 'text': userIdFind.data[i].message}]});
         }
     })
