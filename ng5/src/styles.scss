@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+
+body {
+  background:#2E9CE6;
+  padding: 3em;
+  font-family: 'Raleway', 'Arial';
+  color:#fff;
+}
+ul {
+  list-style-type:none;
+  margin:0 0 2em 0;
+  padding:0;
+}
+ul li {
+  display:inline;
+  margin-right: 30px;
+}
+ul li a {
+  font-size: 1.5em;
+}
+a {
+  color:#fff;
+  text-decoration:none;
+}
+
+body {
+  width: 100wh;
+  height: 90vh;
+  color: #fff;
+  background: linear-gradient(-45deg, #020040, #114cd5, #488ed5, #431dd5);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+h1,
+h6 {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  right: 0;
+  left: 0;
+}
