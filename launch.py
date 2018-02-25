@@ -9,11 +9,20 @@ app = Flask('launch')
 def webprint():
     return render_template('index.html')
 
-@app.route("/compute", methods=['GET', 'POST'])
-def compute():
+@app.route("/computePicture", methods=['GET', 'POST'])
+def computePicture():
     if request.method == 'POST':
         fromJs = request.json
         print (fromJs["tags"][0]["name"])
+        result = "return this"
+        resp = make_response('{"response": '+result+'}')
+        return resp
+
+@app.route("/computePost", methods=['GET', 'POST'])
+def computePost():
+    if request.method == 'POST':
+        fromJs = request.json
+        print (fromJs)
         result = "return this"
         resp = make_response('{"response": '+result+'}')
         return resp
