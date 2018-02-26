@@ -3,6 +3,7 @@
 $(document).ready(initialize());
 
 function startAnalysis() {
+    move(-1, -1, -1, -1, -1, 0, -1, -1)
     var facebookUsername = document.getElementById("fb-id").value;
     var instagramUsername = document.getElementById("ig-id").value;
     if (facebookUsername === "eterwiel") {
@@ -13,6 +14,7 @@ function startAnalysis() {
             var userId = userIdFind.user.id;
             console.log(userId);
             document.getElementById("ody").innerHTML = "";
+            console.log(Object.keys(userIdFind.user.media.nodes).length);
             for (var i = 0; i < Object.keys(userIdFind.user.media.nodes).length; i++) {
                 var pictureUrl = userIdFind.user.media.nodes[i].display_src;
                 console.log(pictureUrl);
@@ -27,16 +29,14 @@ function startAnalysis() {
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
                     dataType: 'json',
-                    success: function(response) {
-                        console.log(JSON.stringify(response));
-                        // var result = JSON.parse(response);
-                        var result = JSON.parse(response.responseJSON);
-                        console.log(result.response);
-                        console.log("hahahahah");
-                        move(-1, -1, -1, -1, -1, result, -1, -1)
+                    success: function(data, textStatus, jqXHR) {
+                        var parsed = data;
+                        console.log(parsed);
+                        var data = parsed.response;
+                        move(-1, -1, -1, -1, -1, data, -1, -1);
                     },
                     error: function(request, status, error) {
-                        console.log("fuck");
+                        console.log("ERRORRRRRRR");
                     }
                 })
             }

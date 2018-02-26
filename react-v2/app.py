@@ -383,20 +383,20 @@ def profanityCheck(nlp):
     censored = f.read().splitlines()
     f.close()
 
-    vulgarity = 0
+    profanity = 0
     n = len(nlp["keywords"])
 
     for i in range(n):
         if nlp["keywords"][i]["sentiment"]["score"]<0:
             for j in range(len(censored)):
                 if censored[j] in nlp["keywords"][i]["text"].split(' '):
-                    vulgarity += (nlp["keywords"][i]["emotion"]["disgust"]+ \
+                    print('blockchain')
+                    profanity += (nlp["keywords"][i]["emotion"]["disgust"]+ \
                                   nlp["keywords"][i]["emotion"]["anger"]+ \
                                   nlp["keywords"][i]["sentiment"]["score"]*(-1))
 
-    vulgarity = vulgarity + ""
-    resp = make_response('{"response": '+vulgarity+'}')
-    return resp
+    print (profanity)
+    return profanity
 
 ######################################Flask########################################
 
@@ -476,6 +476,7 @@ def computePost():
     if request.method == 'POST':
         fromJs = request.json
         try:
+            print("Fuck")
             response = natural_language_understanding.analyze(
               text=fromJs,
               features=Features(
@@ -488,10 +489,13 @@ def computePost():
                   sentiment=True,
                   limit=2)))
 
-            result = str(profanityCheck(response))
-
+            result = profanityCheck(response) / 2
+            if result == 0:
+                result = '-1'
+            else:
+                result = str(result)
         except:
-            result = '0'
+            result = '-1'
 
         resp = make_response('{"response": '+result+'}')
 
