@@ -3,9 +3,8 @@
 $(document).ready(initialize());
 
 function startAnalysis() {
-    move(-1, -1, -1, -1, -1, 0, -1, -1)
-    var facebookUsername = document.getElementById("fb-id").value;
-    var instagramUsername = document.getElementById("ig-id").value;
+    var facebookUsername = document.getElementById("facebookUsername").value;
+    var instagramUsername = document.getElementById("instagramUsername").value;
     if (facebookUsername === "eterwiel") {
         facebookGetInfo();
     }
@@ -14,29 +13,21 @@ function startAnalysis() {
             var userId = userIdFind.user.id;
             console.log(userId);
             document.getElementById("ody").innerHTML = "";
-            console.log(Object.keys(userIdFind.user.media.nodes).length);
             for (var i = 0; i < Object.keys(userIdFind.user.media.nodes).length; i++) {
                 var pictureUrl = userIdFind.user.media.nodes[i].display_src;
                 console.log(pictureUrl);
-                var isLast = false;
-                if (i === Object.keys(userIdFind.user.media.nodes).length - 1) {
-                    isLast = true;
-                }
-                processImage(pictureUrl, isLast);
+                processImage(pictureUrl)
                 $.ajax({
                     type:"POST",
                     url: "/computePost",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(userIdFind.user.media.nodes[i].caption),
                     dataType: 'json',
-                    success: function(data, textStatus, jqXHR) {
-                        var parsed = data;
-                        console.log(parsed);
-                        var data = parsed.response;
-                        move(-1, -1, -1, -1, -1, data, -1, -1);
+                    success: function(response) {
+                        console.log(JSON.stringify(response, null, 2));
                     },
                     error: function(request, status, error) {
-                        console.log("ERRORRRRRRR");
+                        console.log(request.responseText);
                     }
                 })
             }
@@ -58,7 +49,7 @@ function displayInstagramPictures(userId) {
     block.run();
 }
 
-function processImage(pictureUrl, isLast) {
+function processImage(pictureUrl) {
     var key = "77606c7b568d4ad38cce114c66acd02c";
     var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
     var params = {
@@ -87,21 +78,7 @@ function processImage(pictureUrl, isLast) {
                 console.log(JSON.stringify(response, null, 2));
             },
             error: function(request, status, error) {
-                if (isLast) {
-                    $.ajax({
-                        type:"GET",
-                        url: "/pullPictureData",
-                        success: function(response) {
-                            var parsed = JSON.parse(response);
-                            var data = parsed.response;
-                            move(data[0], data[1], data[2], data[3], data[4], -1, data[5], data[6]);
-                            console.log(data);
-                        },
-                        error: function(request, status, error) {
-                            console.log("b");
-                        }
-                    })
-                }
+                console.log(request.responseText);
             }
         })
     }).fail(function(jqXHR, textStatus, errorThrown) {
